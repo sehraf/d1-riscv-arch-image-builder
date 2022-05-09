@@ -31,6 +31,8 @@ The second script uses `sudo` for root access. Like any random script from a ran
 
 Things are rebuild whenever the corresponsing `output/<file>` is missing. For example, the kernel is rebuilt when there is no `Image` file.
 
+The default password for the `root` account is `sunxi`.
+
 # Status
 ## 22.04.2022
 - kernel includes modules for USB LAN adapter
