@@ -32,7 +32,7 @@ export KERNEL_RELEASE='5.18.0-rc1-gcc63db754b21-dirty' # must match commit!
 export IGNORE_COMMITS=0
 
 check_deps() {
-    if ! pacman -Qi "${1}" > /dev/null ; then
+    if ! which "${1}" > /dev/null ; then
         echo "Please install '${1}'"
         exit 1
     fi
