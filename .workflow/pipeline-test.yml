@@ -3,6 +3,13 @@ name: pipeline-test
 displayName: pipeline-test
 triggers:
   trigger: auto
+  push:
+    branches:
+      prefix:
+        - master
+    commitMessages:
+      include:
+        - fix:*
 stages:
   - name: stage-6eb79649
     displayName: 未命名
