@@ -1,0 +1,43 @@
+version: '1.0'
+name: pipeline-test
+displayName: pipeline-test
+triggers:
+  trigger: auto
+stages:
+  - name: stage-6eb79649
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@docker
+        name: build_docker
+        displayName: 镜像构建
+        type: cert
+        certificate: c2d6cdc0-da7b-013a-de23-3a29d97e4f67
+        tag: ${GITEE_PIPELINE_BUILD_NUMBER}
+        dockerfile: ./Dockerfile
+        artifacts: []
+        isCache: true
+        strategy:
+          retry: '0'
+  - name: stage-00fbade3
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: publish@release_artifacts
+        name: publish_release_artifacts
+        displayName: 发布
+        dependArtifact: output
+        version: 1.0.0.0
+        autoIncrement: true
+        strategy:
+          retry: '0'
+strategy:
+  blocking: false
+permissions:
+  - role: admin
+    members:
+      - Etzyio
