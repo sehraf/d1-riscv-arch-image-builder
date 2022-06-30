@@ -21,7 +21,7 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: cert
-        certificate: c2d6cdc0-da7b-013a-de23-3a29d97e4f67
+        certificate: adfd8ee0-da91-013a-4266-0279bac00ea5
         tag: risv:${GITEE_PIPELINE_BUILD_NUMBER}
         dockerfile: ./Dockerfile
         artifacts: []
