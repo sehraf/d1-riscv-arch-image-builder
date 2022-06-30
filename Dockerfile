@@ -10,7 +10,7 @@ ADD mirrorlist /etc/pacman.d/mirrorlist
 
 RUN pacman-key --init 
 RUN pacman-key --populate archlinux
-RUN pacman -Syy --noconfirm riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc git
+RUN pacman -Syyu --noconfirm riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc git
 RUN sh 1_compile.sh output
 
 CMD "/bin/bash"
