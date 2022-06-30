@@ -11,5 +11,4 @@ RUN sed -i 's/^/Server = https:\/\/mirrors.tuna.tsinghua.edu.cn\/archlinux\/$rep
 RUN pacman -Syy --noconfirm riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc git
 RUN sh 1_compile.sh output
 
-
 CMD "/bin/bash"
