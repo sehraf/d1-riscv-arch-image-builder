@@ -22,7 +22,7 @@ stages:
         tag: risv:${GITEE_PIPELINE_BUILD_NUMBER}
         dockerfile: ./Dockerfile
         artifacts: []
-        isCache: true
+        isCache: false
         strategy:
           retry: '0'
   - name: stage-00fbade3
