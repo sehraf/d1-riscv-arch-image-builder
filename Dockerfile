@@ -6,12 +6,8 @@ ADD consts.sh consts.sh
 ADD licheerv_linux_defconfig licheerv_linux_defconfig
 ADD uboot-makefile.patch uboot-makefile.patch
 ADD upload_kernel.sh upload_kernel.sh
+ADD mirrorlist /etc/pacman.d/mirrorlist
 
-RUN sed -i 's/^/Server = https:\/\/mirrors.tuna.tsinghua.edu.cn\/archlinux\/$repo\/os\/$arch\/\n/g' /etc/pacman.d/mirrorlist
-
-RUN sed -i 's/^/Server = https:\/\/mirrors.cloud.tencent.com\/archlinux\/$repo\/os\/$arch\/\n/g' /etc/pacman.d/mirrorlist
-
-RUN sed -i 's/^/Server = https:\/\/mirrors.aliyun.com\/archlinuxcn\/$repo\/os\/$arch\/\n/g' /etc/pacman.d/mirrorlist
 RUN pacman -Syy --noconfirm riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc git
 RUN sh 1_compile.sh output
 
