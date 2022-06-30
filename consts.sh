@@ -7,7 +7,7 @@ export PWD
 export NPROC
 
 export ROOT_FS='archriscv-20210601.tar.zst'
-export ROOT_FS_DL="https://archriscv.felixc.at/images/${ROOT_FS}"
+export ROOT_FS_DL="https://mirror.iscas.ac.cn/archriscv/images/${ROOT_FS}"
 
 # select 'arch', 'nezha_defconfig'
 export KERNEL='nezha_defconfig'
