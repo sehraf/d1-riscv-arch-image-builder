@@ -143,7 +143,7 @@ if [ ! -f "${OUT_DIR}/Image" ] || [ ! -f "${OUT_DIR}/Image.gz" ] ; then
             # Nezha defconfig
 	        # setting kernel release name
             echo "CONFIG_LOCALVERSION=${KERNEL_RELEASE}" >> ${DIR}/arch/riscv/configs/nezha_defconfig
-	    echo "CONFIG_LOCALVERSION_AUTO=n" >> ${DIR}/arch/riscv/configs/nezha_defconfig
+	    	echo "CONFIG_LOCALVERSION_AUTO=n" >> ${DIR}/arch/riscv/configs/nezha_defconfig
             # enable WiFi
             echo 'CONFIG_WIRELESS=y' >> ${DIR}/arch/riscv/configs/nezha_defconfig
             echo 'CONFIG_CFG80211=m' >> ${DIR}/arch/riscv/configs/nezha_defconfig
