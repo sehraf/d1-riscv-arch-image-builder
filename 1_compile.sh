@@ -129,6 +129,8 @@ if [ ! -f "${OUT_DIR}/Image" ] || [ ! -f "${OUT_DIR}/Image.gz" ] ; then
     git clone --depth 1 "${SOURCE_KERNEL}" -b "${KERNEL_TAG}"
     cd ${DIR}
     pin_commit "${COMMIT_KERNEL}"
+    # fix kernel version
+    touch .scmversion
     cd ..
 
     # LicheeRV defconfig
