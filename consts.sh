@@ -41,8 +41,8 @@ export USE_CHROOT=1
 # use extlinux ('extlinux') or boot.scr ('script') for loading the kernel?
 export BOOT_METHOD='extlinux'
 
-export VERSION_OPENSBI='1.2'
-export VERSION_KERNEL='6.4'
+export VERSION_OPENSBI='1.3.1'
+export VERSION_KERNEL='6.5'
 
 export SOURCE_OPENSBI="https://github.com/riscv-software-src/opensbi/releases/download/v${VERSION_OPENSBI}/opensbi-${VERSION_OPENSBI}-rv-bin.tar.xz"
 export SOURCE_UBOOT='https://github.com/smaeul/u-boot'
