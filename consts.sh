@@ -6,7 +6,7 @@ NPROC="$(nproc)"
 export PWD
 export NPROC
 
-export ROOT_FS='archriscv-2023-07-10.tar.zst'
+export ROOT_FS='archriscv-2023-09-13.tar.zst'
 export ROOT_FS_DL="https://archriscv.felixc.at/images/${ROOT_FS}"
 
 # select 'arch', 'defconfig'
