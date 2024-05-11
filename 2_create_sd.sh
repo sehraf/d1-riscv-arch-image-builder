@@ -53,6 +53,7 @@ check_root_fs
 for FILE in 8723ds.ko u-boot-sunxi-with-spl.bin Image.gz Image; do
     check_required_file "${OUT_DIR}/${FILE}"
 done
+# shellcheck disable=SC2043
 for DIR in modules; do
     check_required_folder "${OUT_DIR}/${DIR}"
 done
@@ -86,18 +87,27 @@ ${SUDO} mount "${DEVICE}${PART_IDENTITYFIER}1" "${MNT}/boot"
 ${SUDO} tar -xv --zstd -f "${ROOT_FS}" -C "${MNT}"
 
 # install kernel and modules
-# KERNEL_RELEASE=$(make ARCH="${ARCH}" -s kernelversion -C build/linux-build)
-KERNEL_RELEASE=$(ls output/modules)
-${SUDO} cp "${OUT_DIR}/Image.gz" "${OUT_DIR}/Image" "${MNT}/boot/"
+if [ "${USE_CHROOT}" != 0 ]; then
+    ${SUDO} arch-chroot "${MNT}" pacman -Sy
+    ${SUDO} arch-chroot "${MNT}" pacman -S linux
+else
+    # # KERNEL_RELEASE=$(make ARCH="${ARCH}" -s kernelversion -C build/linux-build)
+    # KERNEL_RELEASE=$(ls output/modules)
+    # ${SUDO} cp "${OUT_DIR}/Image.gz" "${OUT_DIR}/Image" "${MNT}/boot/"
 
-${SUDO} mkdir -p "${MNT}/lib/modules"
-${SUDO} cp -a "${OUT_DIR}/modules/${KERNEL_RELEASE}" "${MNT}/lib/modules"
-${SUDO} install -D -p -m 644 "${OUT_DIR}/8723ds.ko" "${MNT}/lib/modules/${KERNEL_RELEASE}/kernel/drivers/net/wireless/8723ds.ko"
+    # ${SUDO} mkdir -p "${MNT}/lib/modules"
+    # ${SUDO} cp -a "${OUT_DIR}/modules/${KERNEL_RELEASE}" "${MNT}/lib/modules"
+    # ${SUDO} install -D -p -m 644 "${OUT_DIR}/8723ds.ko" "${MNT}/lib/modules/${KERNEL_RELEASE}/kernel/drivers/net/wireless/8723ds.ko"
 
-${SUDO} rm "${MNT}/lib/modules/${KERNEL_RELEASE}/build"
-${SUDO} rm "${MNT}/lib/modules/${KERNEL_RELEASE}/source"
+    # ${SUDO} rm "${MNT}/lib/modules/${KERNEL_RELEASE}/build"
+    # ${SUDO} rm "${MNT}/lib/modules/${KERNEL_RELEASE}/source"
 
-${SUDO} depmod -a -b "${MNT}" "${KERNEL_RELEASE}"
+    # ${SUDO} depmod -a -b "${MNT}" "${KERNEL_RELEASE}"
+
+    curl -O -L ${PKG_KERNEL}
+    # tar -zxvf <package>.tar.gz
+    ${SUDO} pacman --arch 'riscv64' --sysroot "${MNT}" ${PKG_KERNEL_FILE}
+fi
 echo '8723ds' >>8723ds.conf
 ${SUDO} mv 8723ds.conf "${MNT}/etc/modules-load.d/"
 

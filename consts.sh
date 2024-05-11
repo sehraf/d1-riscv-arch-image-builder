@@ -42,12 +42,16 @@ export USE_CHROOT=1
 export BOOT_METHOD='extlinux'
 
 export VERSION_OPENSBI='1.4'
-export VERSION_KERNEL='6.8'
+export VERSION_KERNEL='6.8.5'
+export VERSION_KERNEL_ARCH="${VERSION_KERNEL}.arch1-1"
+
+export PKG_KERNEL_FILE="linux-${VERSION_KERNEL_ARCH}-1-riscv64.pkg.tar.zst"
+export PKG_KERNEL="https://riscv.mirror.pkgbuild.com/repo/core/${PKG_KERNEL_FILE}"
 
 export SOURCE_OPENSBI="https://github.com/riscv-software-src/opensbi/releases/download/v${VERSION_OPENSBI}/opensbi-${VERSION_OPENSBI}-rv-bin.tar.xz"
 export SOURCE_UBOOT='https://github.com/smaeul/u-boot'
-export SOURCE_KERNEL="https://github.com/torvalds/linux/archive/refs/tags/v${VERSION_KERNEL}.tar.gz"
-export SOURCE_RTL8723='https://github.com/lwfinger/rtl8723ds.git'
+# export SOURCE_KERNEL="https://github.com/torvalds/linux/archive/refs/tags/v${VERSION_KERNEL}.tar.gz"
+# export SOURCE_RTL8723='https://github.com/lwfinger/rtl8723ds.git'
 # https://github.com/karabek/xradio
 
 # pinned commits (no notice when things change)
