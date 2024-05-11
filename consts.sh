@@ -6,7 +6,7 @@ NPROC="$(nproc)"
 export PWD
 export NPROC
 
-export ROOT_FS='archriscv-2023-09-13.tar.zst'
+export ROOT_FS='archriscv-2024-03-30.tar.zst'
 export ROOT_FS_DL="https://archriscv.felixc.at/images/${ROOT_FS}"
 
 # select 'arch', 'defconfig'
@@ -41,8 +41,8 @@ export USE_CHROOT=1
 # use extlinux ('extlinux') or boot.scr ('script') for loading the kernel?
 export BOOT_METHOD='extlinux'
 
-export VERSION_OPENSBI='1.3.1'
-export VERSION_KERNEL='6.5'
+export VERSION_OPENSBI='1.4'
+export VERSION_KERNEL='6.8'
 
 export SOURCE_OPENSBI="https://github.com/riscv-software-src/opensbi/releases/download/v${VERSION_OPENSBI}/opensbi-${VERSION_OPENSBI}-rv-bin.tar.xz"
 export SOURCE_UBOOT='https://github.com/smaeul/u-boot'
