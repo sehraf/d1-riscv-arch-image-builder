@@ -5,6 +5,10 @@ set -e
 
 . ./consts.sh
 
+# Dependency list
+DEP_LIST_arch="arch-install-scripts qemu-user-static qemu-user-static-binfmt"
+DEP_LIST_debian="arch-install-scripts qemu-user-static"
+
 check_root_fs() {
     if [ ! -f "${ROOT_FS}" ]; then
         wget "${ROOT_FS_DL}"
@@ -44,7 +48,9 @@ DEVICE=${1}
 
 if [ "${USE_CHROOT}" != 0 ]; then
     # check_deps for arch-chroot on non RISC-V host
-    for DEP in arch-install-scripts qemu-user-static qemu-user-static-binfmt; do
+    DEP_LIST="DEP_LIST_$ID"
+    eval DEP_LIST=\$$DEP_LIST
+    for DEP in $DEP_LIST; do
         check_deps ${DEP}
     done
 fi
