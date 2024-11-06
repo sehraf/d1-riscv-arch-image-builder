@@ -20,9 +20,17 @@ There are multiple sources for an Archlinux image:
 - WiFi driver (rtl8723ds) based on https://github.com/lwfinger/rtl8723ds
 - RootFS based on https://archriscv.felixc.at (root password is ~~`sifive`~~ `archriscv`)
 
-## How to build
+## How to build on ArchLinux
 1. Install requirements: `pacman -Sy riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc`
    1. If you want to `chroot` into the RISC-V image, you also need `arch-install-scripts qemu-user-static qemu-user-static-binfmt`
+1. Edit `consts.sh` to your needs. For example, you may want to select a [different DTB](https://github.com/sehraf/riscv-arch-image-builder/blob/5c450da98d578617781ae13f9d2b0850a61b21c4/consts.sh#L22) for a different board variant.
+1. Run `1_compile.sh` which compiles everything into the `output` folder.
+1. Run `2_create_sd.sh /dev/<device>` to flash everything on the SD card.
+1. Configure your Archlinux :rocket:
+
+## How to build on Debian
+1. Install requirements: `apt install -y gcc-riscv64-linux-gnu bison flex python3-dev libssl-dev swig cpio python3-setuptools build-essential bc`
+   1. If you want to `chroot` into the RISC-V image, you also need `arch-install-scripts qemu-user-static`
 1. Edit `consts.sh` to your needs. For example, you may want to select a [different DTB](https://github.com/sehraf/riscv-arch-image-builder/blob/5c450da98d578617781ae13f9d2b0850a61b21c4/consts.sh#L22) for a different board variant.
 1. Run `1_compile.sh` which compiles everything into the `output` folder.
 1. Run `2_create_sd.sh /dev/<device>` to flash everything on the SD card.

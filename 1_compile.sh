@@ -54,7 +54,9 @@ patch_config() {
     ./scripts/config --file "../${DIR}-build/.config" "$_OP" "$key"
 }
 
-for DEP in riscv64-linux-gnu-gcc swig cpio; do
+DEP_LIST="DEP_LIST_$ID"
+eval DEP_LIST=\$$DEP_LIST
+for DEP in $DEP_LIST; do
     check_deps ${DEP}
 done
 

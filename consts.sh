@@ -1,4 +1,13 @@
 #!/usr/bin/sh
+
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+fi
+
+# Dependency list
+DEP_LIST_arch="riscv64-linux-gnu-gcc swig cpio"
+DEP_LIST_debian="gcc-riscv64-linux-gnu bison flex python3-dev libssl-dev"
+
 export CROSS_COMPILE='riscv64-linux-gnu-'
 export ARCH='riscv'
 PWD="$(pwd)"
@@ -58,10 +67,24 @@ export IGNORE_COMMITS=0
 export DEBUG='n'
 
 check_deps() {
-    if ! pacman -Qi "${1}" >/dev/null; then
-        echo "Please install '${1}'"
+    case $ID in
+    arch)
+        if ! pacman -Qi "${1}" >/dev/null; then
+            echo "Please install '${1}'"
+            exit 1
+        fi
+    ;;
+    debian)
+        if ! dpkg -l "${1}" >/dev/null; then
+            echo "Please install '${1}'"
+            exit 1
+        fi
+    ;;
+    *)
+        echo "This script is running on not supported distro!"
         exit 1
-    fi
+    ;;
+    esac
 }
 
 if [ -n "${CI_BUILD}" ]; then
