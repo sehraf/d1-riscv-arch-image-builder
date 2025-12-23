@@ -15,7 +15,7 @@ NPROC="$(nproc)"
 export PWD
 export NPROC
 
-export ROOT_FS='archriscv-2024-03-30.tar.zst'
+export ROOT_FS='archriscv-2025-06-12.tar.zst'
 export ROOT_FS_DL="https://archriscv.felixc.at/images/${ROOT_FS}"
 
 # select 'arch', 'defconfig'
@@ -50,18 +50,19 @@ export USE_CHROOT=1
 # use extlinux ('extlinux') or boot.scr ('script') for loading the kernel?
 export BOOT_METHOD='extlinux'
 
-export VERSION_OPENSBI='1.4'
-export VERSION_KERNEL='6.8'
+export VERSION_OPENSBI='1.7'
+export VERSION_KERNEL='6.18'
 
 export SOURCE_OPENSBI="https://github.com/riscv-software-src/opensbi/releases/download/v${VERSION_OPENSBI}/opensbi-${VERSION_OPENSBI}-rv-bin.tar.xz"
-export SOURCE_UBOOT='https://github.com/smaeul/u-boot'
+export SOURCE_UBOOT='https://github.com/MartinHerren/u-boot'
 export SOURCE_KERNEL="https://github.com/torvalds/linux/archive/refs/tags/v${VERSION_KERNEL}.tar.gz"
-export SOURCE_RTL8723='https://github.com/lwfinger/rtl8723ds.git'
+export SOURCE_RTL8723='https://github.com/amazingfate/rtl8723ds.git'
 # https://github.com/karabek/xradio
 
 # pinned commits (no notice when things change)
-export COMMIT_UBOOT='329e94f16ff84f9cf9341f8dfdff7af1b1e6ee9a' # equals d1-2022-10-31
-export TAG_UBOOT='d1-2022-10-31'
+export COMMIT_UBOOT='d35a660d5c26559a4e10e30e2780a566629c13e9' # equals d1-2022-10-31
+export TAG_UBOOT='d1-wip-python-fix'
+export TAG_RTL8723='fix-6.18'
 # use this (set to something != 0) to override the check
 export IGNORE_COMMITS=0
 export DEBUG='n'
