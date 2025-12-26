@@ -233,7 +233,7 @@ if [ ! -f "${OUT_DIR}/8723ds.ko" ]; then
     DIR='rtl8723ds'
     clean_dir ${DIR}
 
-    git clone "${SOURCE_RTL8723}"
+    git clone "${SOURCE_RTL8723}" -b "${TAG_RTL8723}"
     cd ${DIR}
     make CROSS_COMPILE="${CROSS_COMPILE}" ARCH="${ARCH}" KSRC=../linux-build -j "${NPROC}" modules || true
     cd ..
